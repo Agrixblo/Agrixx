@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.26;
 
 import "./MyToken.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
@@ -66,12 +66,5 @@ contract StakingContract is VRFConsumerBase {
 
     function fulfillRandomness(bytes32 requestId, uint256 randomness) internal override {
         randomResult = randomness;
-    }
-
-    // function to withdraw LINK tokens from the contract
-    function withdrawLink() external onlyOwner {
-        uint256 balance = LINK.balanceOf(address(this));
-        require(balance > 0, "No LINK to withdraw");
-        LINK.transfer(msg.sender, balance);
     }
 }
